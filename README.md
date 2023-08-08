@@ -12,7 +12,9 @@ Develop process when calibrating APT Program 1516 data.  Apply to other calibrat
 
 **Result of a cal program analysis**:  
 
-* Pipeline processing flags clearly summarized
+* In pipeline processing, (non-default?) flags summarized
+* Mnemonic-filename translation, eg  
 * Useful data handling/analysis functions available to the group, with helpful docstrings in functions to enable easy re-use  
 * Clear plots/tables for cal documentation
-* Low overhead to re-analysis with cut & pasteable instructions
+* Low overhead to re-analysis 
+* Program and data view modules, get target brightness & spectrum (simbad call?), count rates in peak, dates of observations executed 
