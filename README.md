@@ -18,3 +18,38 @@ Develop process when calibrating APT Program 1516 data.  Apply to other calibrat
 * Clear plots/tables for cal documentation
 * Low overhead to re-analysis 
 * Program and data view modules, get target brightness & spectrum (simbad call?), count rates in peak, dates of observations executed 
+
+--
+
+
+### General
+
+"Tables" can be pandas tables - mixed types of columns, pd methods & attributes come for free
+
+Incoming data sets real/fake/grafted hdrs, ... but MAST format
+
+### Class Dataset
+
+		Dataset.__init__(aptget=None/(aptid, token), 
+		              datadir=location_on_disk,
+		              level='', 
+		              kwdlist=None):
+			(if required gets MAST dataset)
+			creates and writes list of datafile names for Data.associate()
+			creates table and writes out summary (like DT code)
+			
+			initializes as many Data instances as files
+			
+			
+			 
+
+### Class Data
+
+	Data.level  
+	Data.associate(tbd): creates map from user-supplied understandable name to aptx-supplied filename  
+	regardless of the level (uncal/rateints/cal/calints/whatever) of the data
+	    eg: 1068_f480_dith3 -> jw01509002001_06101_00002_nis
+	
+	Data.
+	
+	
