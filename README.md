@@ -1,5 +1,6 @@
 # calami
 
+
 ### Developing calibration methods for NIRISS AMI mode data using 1516 CM data
 
 Design code at high level first and walk-through by one other AMI team member
@@ -69,11 +70,12 @@ Let's think about dataset needs:
 	# Now we have easily understood 'pointers;' in 'my_mapping.txt' file for further processing
 	
 
-### Class Dataset
+≈        
 
 		def __init__(self, datafrom, 
-		                   filetypes,
-		                   infotable):
+		                   filetypes=(),
+		                   infodir = ,
+		                   verbose=False):
 		   """ Finds data on file or downloads with shell call to jwst_download.py """ 
 		   ****************************************************
 		   *  Is generalizing to get data two ways overkill?  *
@@ -83,8 +85,14 @@ Let's think about dataset needs:
 			datafrom - location_on_disk or (aptid, token, datadir 
 			             --- use jwst_download.py, put data in datadir)
 			filetypes - use jwstdownload arg(s) syntax.
+			infodir - where to log details of driver input, running, etc.
 			
-			self.rootlist = self.getdataset(dataset) # as many rootnames as exposures
+			creates
+				self.rootlist = self.getdataset(dataset) # as many rootnames as exposures
+				self.filetypes
+				infodir
+				
+				
 				Questions:
 			         - how do we treat specifying 'level' of data calibration?
 			         - writes rootlist items to disk file (format? .txt?) 
@@ -134,3 +142,22 @@ Tasks can be done:
 ### Org questions:
 
 	Where do we store useful 'meta-information' if we want to easily reprocess with the same ref files and different algorithm (eg changed threshold or max iteration in bp_fix) E.g., CRDS_VER, CRDS_CTX,, jwst software branch info,... 
+	
+--
+--
+
+## Prototyping using CAL_1516 design
+
+###Quantify CM in data
+
+Top level driver - set-up allows for using multiple datasets later.:
+
+	userhomedir = ...
+	outputdir = ...
+	analysisname = "CMquantification"
+	dataset = Dataset(datafrom = userhomedir+ + "/niriss/cal_1516/pipeline_calibrated_data/",
+                       filetypes = ("ramp"),
+                       outputdir = ...,
+                       verbose=True)
+--
+
